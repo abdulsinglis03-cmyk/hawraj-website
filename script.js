@@ -139,7 +139,7 @@ function initContactForm() {
   if (!form) return;
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+   // e.preventDefault();
 
     clearErrors();
 
