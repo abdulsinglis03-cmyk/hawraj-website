@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gallery and team of HAWRAJ GLOBAL INDUSTRIES LTD — photos of our work and the people behind the company.">
+  <title>Gallery & Team | HAWRAJ GLOBAL INDUSTRIES LTD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+
+  <style>
+    /* Header always solid on this page (no hero image) */
+    .header { background: rgba(5, 13, 26, 0.95); backdrop-filter: blur(12px); box-shadow: 0 2px 20px rgba(0,0,0,.4); }
+
+    /* Page banner */
+    .page-banner {
+      padding: 160px 0 70px;
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(5,13,26,.92), rgba(13,33,55,.85)),
+        url('images/hero-bg.jpg') center/cover no-repeat;
+      border-bottom: 1px solid rgba(212,175,55,.15);
+    }
+    .page-banner .section__header { margin-bottom: 0; }
+
+    /* ---------- Gallery ---------- */
+    .gallery { background: var(--navy-800); }
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .gallery__item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      aspect-ratio: 4/3;
+      background: var(--navy-700);
+      border: 1px solid rgba(212,175,55,.12);
+      cursor: pointer;
+    }
+    .gallery__item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .gallery__item:hover img { transform: scale(1.08); }
+    .gallery__caption {
+      position: absolute; inset: 0;
+      display: flex; align-items: flex-end;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(5,13,26,.9), transparent 60%);
+      color: var(--white);
+      font-weight: 500;
+      font-size: .95rem;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .gallery__item:hover .gallery__caption { opacity: 1; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(5,13,26,.95);
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 40px 20px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 85vh; border-radius: 6px; box-shadow: var(--shadow); }
+    .lightbox__close {
+      position: absolute; top: 20px; right: 24px;
+      background: none; border: none; cursor: pointer;
+      color: var(--white); font-size: 2.4rem; line-height: 1;
+    }
+    .lightbox__close:hover { color: var(--gold-500); }
+    .lightbox__text { position: absolute; bottom: 24px; left: 0; right: 0; text-align: center; color: var(--gray-300); }
+
+    /* ---------- Team ---------- */
+    .team { background: var(--navy-900); position: relative; }
+    .team::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,.3), transparent);
+    }
+
+    /* Featured profile */
+    .lead-card {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 40px;
+      background: var(--navy-800);
+      border: 1px solid rgba(212,175,55,.15);
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: left;
+      margin-bottom: 40px;
+      transition: all var(--transition);
+    }
+    .lead-card:hover { border-color: rgba(212,175,55,.3); box-shadow: var(--shadow); }
+    .lead-photo { position: relative; background: var(--navy-700); }
+    .lead-photo img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; object-position: top center; }
+    .lead-photo::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold-600), var(--gold-400));
+    }
+    .lead-body { padding: 40px 40px 40px 0; }
+    .lead-body h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .lead-role { color: var(--gold-500); font-size: .85rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; }
+    .lead-body p { color: var(--gray-300); margin-bottom: 16px; }
+    .lead-body h4 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--white); margin: 28px 0 14px; }
+    .lead-areas { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+    .lead-areas li { position: relative; padding-left: 24px; font-size: .9rem; color: var(--gray-300); }
+    .lead-areas li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-500); font-weight: 700; }
+    .lead-vision { margin-top: 28px; padding: 20px 24px; background: var(--navy-700); border-left: 4px solid var(--gold-500); border-radius: 4px; color: var(--gray-300); line-height: 1.7; }
+    .lead-vision strong { color: var(--gold-500); }
+
+    /* Other team members */
+    .team__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .member {
+      background: var(--navy-800);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .member:hover { border-color: rgba(212,175,55,.25); transform: translateY(-6px); box-shadow: var(--shadow); }
+    .member__photo { aspect-ratio: 1/1; background: var(--navy-700); overflow: hidden; }
+    .member__photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .member__info { padding: 22px 20px 26px; }
+    .member__name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--white); }
+    .member__role { color: var(--gold-500); font-size: .78rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin: 4px 0 12px; }
+    .member__bio { color: var(--gray-400); font-size: .9rem; line-height: 1.6; }
+
+    @media (max-width: 1024px) { .gallery__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 800px) {
+      .page-banner { padding: 130px 0 50px; }
+      .lead-card { grid-template-columns: 1fr; gap: 0; }
+      .lead-photo img { min-height: 300px; max-height: 380px; }
+      .lead-body { padding: 28px 24px; }
+      .lead-body h3 { font-size: 1.6rem; }
+      .lead-areas { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) { .gallery__grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <img src="images/logo.svg" alt="HAWRAJ Global Industries" class="nav__logo-img">
+        <span class="nav__logo-text">HAWRAJ<span class="gold"> GLOBAL</span></span>
+      </a>
+
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="index.html#about" class="nav__link">About</a></li>
+        <li><a href="index.html#services" class="nav__link">Services</a></li>
+        <li><a href="index.html#projects" class="nav__link">Projects</a></li>
+        <li><a href="gallery.html" class="nav__link active">Gallery &amp; Team</a></li>
+        <li><a href="index.html#contact" class="nav__link nav__link--cta">Contact</a></li>
+      </ul>
+
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Banner -->
+  <section class="page-banner">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">Our Story in Pictures</span>
+        <h1 class="section__title">Gallery &amp; Team</h1>
+        <div class="section__divider"></div>
+        <p class="section__desc">A look at our work, and the people behind HAWRAJ GLOBAL INDUSTRIES LTD.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section gallery" id="gallery">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">Gallery</span>
+        <h2 class="section__title">Our Work</h2>
+        <div class="section__divider"></div>
+      </div>
+
+      <!-- To add a photo: copy one <figure> block, change the image name and caption -->
+      <div class="gallery__grid">
+        <figure class="gallery__item">
+          <img src="images/gallery-1.jpg" alt="Photo 1 caption" loading="lazy">
+          <figcaption class="gallery__caption">Photo 1 caption</figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/gallery-2.jpg" alt="Photo 2 caption" loading="lazy">
+          <figcaption class="gallery__caption">Photo 2 caption</figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/gallery-3.jpg" alt="Photo 3 caption" loading="lazy">
+          <figcaption class="gallery__caption">Photo 3 caption</figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/gallery-4.jpg" alt="Photo 4 caption" loading="lazy">
+          <figcaption class="gallery__caption">Photo 4 caption</figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/gallery-5.jpg" alt="Photo 5 caption" loading="lazy">
+          <figcaption class="gallery__caption">Photo 5 caption</figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/gallery-6.jpg" alt="Photo 6 caption" loading="lazy">
+          <figcaption class="gallery__caption">Photo 6 caption</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section team" id="team">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">Our Team</span>
+        <h2 class="section__title">The People Driving Our Vision</h2>
+        <div class="section__divider"></div>
+      </div>
+
+      <!-- Featured profile -->
+      <div class="lead-card">
+        <div class="lead-photo">
+          <img src="images/ashutosh-raj-singh.jpg" alt="Mr. Ashutosh Raj Singh, Business Head India">
+        </div>
+
+        <div class="lead-body">
+          <h3>Mr. Ashutosh Raj Singh</h3>
+          <p class="lead-role">Business Head – India | HAWRAJ GLOBAL INDUSTRIES LTD.</p>
+
+          <p>Mr. Ashutosh Raj Singh is an integral part of HAWRAJ GLOBAL INDUSTRIES LTD., serving as Business Head – India. Originally from India, he brings a business-oriented approach, a strong understanding of the Indian business environment, and a commitment to developing strategic business opportunities across international markets.</p>
+
+          <p>He is responsible for driving business development initiatives, identifying new market opportunities, building strategic partnerships, coordinating with manufacturers and suppliers, and strengthening the company's business network between India, Africa and other international markets.</p>
+
+          <p>With a focus on professionalism, innovation, trust and long-term business relationships, Mr. Singh plays an important role in advancing the company's vision of becoming a reliable global business partner.</p>
+
+          <h4>Key Areas of Responsibility</h4>
+          <ul class="lead-areas">
+            <li>Business Development &amp; Market Expansion</li>
+            <li>India–Africa Trade &amp; Business Relations</li>
+            <li>Strategic Partnerships &amp; Corporate Alliances</li>
+            <li>Industrial Procurement &amp; Supply Chain Coordination</li>
+            <li>Manufacturer &amp; Supplier Networking</li>
+            <li>International Business Opportunities</li>
+          </ul>
+
+          <blockquote class="lead-vision">
+            <strong>Our Vision:</strong> To build strong international partnerships and create sustainable business opportunities through trust, commitment and excellence.
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- Other team members: copy one <article class="member"> block per person -->
+      <div class="team__grid">
+        <article class="member">
+          <div class="member__photo"><img src="images/team-1.jpg" alt="Team member name" loading="lazy"></div>
+          <div class="member__info">
+            <h3 class="member__name">Full Name</h3>
+            <p class="member__role">Job Title</p>
+            <p class="member__bio">One or two lines about this person and what they do in the company.</p>
+          </div>
+        </article>
+
+        <article class="member">
+          <div class="member__photo"><img src="images/team-2.jpg" alt="Team member name" loading="lazy"></div>
+          <div class="member__info">
+            <h3 class="member__name">Full Name</h3>
+            <p class="member__role">Job Title</p>
+            <p class="member__bio">One or two lines about this person and what they do in the company.</p>
+          </div>
+        </article>
+
+        <article class="member">
+          <div class="member__photo"><img src="images/team-3.jpg" alt="Team member name" loading="lazy"></div>
+          <div class="member__info">
+            <h3 class="member__name">Full Name</h3>
+            <p class="member__role">Job Title</p>
+            <p class="member__bio">One or two lines about this person and what they do in the company.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">
+            <img src="images/logo.svg" alt="HAWRAJ Global Industries">
+            <span>HAWRAJ<span class="gold"> GLOBAL</span></span>
+          </a>
+          <p class="footer__desc">
+            HAWRAJ GLOBAL INDUSTRIES LTD — Professional industrial, engineering,
+            construction, and general supply solutions from Bungoma, Kenya.
+          </p>
+        </div>
+
+        <div class="footer__links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="gallery.html">Gallery &amp; Team</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__contact-col">
+          <h4>Get In Touch</h4>
+          <ul class="footer__contact footer__contact--col">
+            <li><span>Bungoma, Kenya</span></li>
+            <li><a href="tel:+254729500461">+254 729 500 461</a></li>
+            <li><a href="mailto:abdulsinglis03@gmail.com">abdulsinglis03@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> HAWRAJ GLOBAL INDUSTRIES LTD. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img src="" alt="" id="lightbox-img">
+    <p class="lightbox__text" id="lightbox-text"></p>
+  </div>
+
+  <script>
+    // Mobile menu
+    var toggle = document.getElementById('nav-toggle');
+    var menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', function () {
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+      toggle.setAttribute('aria-expanded', menu.classList.contains('active'));
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Lightbox
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lightbox-img');
+    var lbText = document.getElementById('lightbox-text');
+    document.querySelectorAll('.gallery__item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var img = item.querySelector('img');
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lbText.textContent = img.alt;
+        lb.classList.add('open');
+      });
+    });
+    function closeLb() { lb.classList.remove('open'); }
+    document.getElementById('lightbox-close').addEventListener('click', closeLb);
+    lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+  </script>
+</body>
+</html>
