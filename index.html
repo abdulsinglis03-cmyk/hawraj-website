@@ -188,22 +188,105 @@
   </div>
 
   <style>
-    .leadership { background: #f6f7f9; }
-    .lead-card { display: grid; grid-template-columns: 340px 1fr; gap: 40px; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,.08); margin-top: 40px; text-align: left; }
-    .lead-photo img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 380px; background: #dde1e7; }
-    .lead-body { padding: 36px 36px 36px 0; }
-    .lead-body h3 { margin: 0; font-size: 1.7rem; color: #14213d; }
-    .lead-role { margin: 6px 0 22px; color: #b8932f; font-weight: 600; }
-    .lead-body p { line-height: 1.7; color: #444; }
-    .lead-body h4 { margin: 26px 0 10px; color: #14213d; }
-    .lead-areas { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
-    .lead-areas li { padding-left: 22px; position: relative; color: #444; }
-    .lead-areas li::before { content: "✓"; position: absolute; left: 0; color: #b8932f; font-weight: 700; }
-    .lead-vision { margin: 26px 0 0; padding: 16px 20px; border-left: 4px solid #b8932f; background: #f6f7f9; color: #14213d; line-height: 1.6; }
+    .leadership { background: var(--navy-900); }
+
+    .lead-card {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 40px;
+      background: var(--navy-800);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: left;
+      transition: all var(--transition);
+    }
+    .lead-card:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: var(--shadow);
+    }
+
+    .lead-photo { position: relative; background: var(--navy-700); }
+    .lead-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .lead-photo::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-600), var(--gold-400));
+    }
+
+    .lead-body { padding: 40px 40px 40px 0; }
+    .lead-body h3 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .lead-role {
+      color: var(--gold-500);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .lead-body p {
+      color: var(--gray-300);
+      margin-bottom: 16px;
+    }
+    .lead-body h4 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 28px 0 14px;
+    }
+
+    .lead-areas {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+    }
+    .lead-areas li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 0.9rem;
+      color: var(--gray-300);
+    }
+    .lead-areas li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--gold-500);
+      font-weight: 700;
+    }
+
+    .lead-vision {
+      margin-top: 28px;
+      padding: 20px 24px;
+      background: var(--navy-700);
+      border-left: 4px solid var(--gold-500);
+      border-radius: 4px;
+      color: var(--gray-300);
+      line-height: 1.7;
+    }
+    .lead-vision strong { color: var(--gold-500); }
+
     @media (max-width: 800px) {
       .lead-card { grid-template-columns: 1fr; gap: 0; }
-      .lead-photo img { min-height: 280px; max-height: 360px; }
-      .lead-body { padding: 24px; }
+      .lead-photo img { min-height: 300px; max-height: 380px; }
+      .lead-body { padding: 28px 24px; }
+      .lead-body h3 { font-size: 1.6rem; }
       .lead-areas { grid-template-columns: 1fr; }
     }
   </style>
