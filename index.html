@@ -24,7 +24,8 @@
       <ul class="nav__menu" id="nav-menu">
         <li><a href="#home" class="nav__link active">Home</a></li>
         <li><a href="#about" class="nav__link">About</a></li>
-        <li><a href="#leadership" class="nav__link">Leadership</a></li>
+        <li><a href="gallery.html#team" class="nav__link">Leadership</a></li>
+        <li><a href="gallery.html#gallery" class="nav__link">Gallery</a></li>
         <li><a href="#services" class="nav__link">Services</a></li>
         <li><a href="#projects" class="nav__link">Projects</a></li>
         <li><a href="#contact" class="nav__link nav__link--cta">Contact</a></li>
@@ -145,152 +146,6 @@
       </div>
     </div>
   </section>
-
-<!-- Leadership -->
-<section class="section leadership" id="leadership">
-  <div class="container">
-    <div class="section__header animate-on-scroll">
-      <span class="section__label">Our Leadership</span>
-      <h2 class="section__title">The People Driving Our Vision</h2>
-      <div class="section__divider"></div>
-    </div>
-
-    <div class="lead-card animate-on-scroll">
-      <div class="lead-photo">
-        <img src="images/ashutosh-raj-singh.jpg" alt="Mr. Ashutosh Raj Singh, Business Head India">
-      </div>
-
-      <div class="lead-body">
-        <h3>Mr. Ashutosh Raj Singh</h3>
-        <p class="lead-role">Business Head – India | HAWRAJ GLOBAL INDUSTRIES LTD.</p>
-
-        <p>Mr. Ashutosh Raj Singh is an integral part of HAWRAJ GLOBAL INDUSTRIES LTD., serving as Business Head – India. Originally from India, he brings a business-oriented approach, a strong understanding of the Indian business environment, and a commitment to developing strategic business opportunities across international markets.</p>
-
-        <p>He is responsible for driving business development initiatives, identifying new market opportunities, building strategic partnerships, coordinating with manufacturers and suppliers, and strengthening the company's business network between India, Africa and other international markets.</p>
-
-        <p>With a focus on professionalism, innovation, trust and long-term business relationships, Mr. Singh plays an important role in advancing the company's vision of becoming a reliable global business partner.</p>
-
-        <h4>Key Areas of Responsibility</h4>
-        <ul class="lead-areas">
-          <li>Business Development &amp; Market Expansion</li>
-          <li>India–Africa Trade &amp; Business Relations</li>
-          <li>Strategic Partnerships &amp; Corporate Alliances</li>
-          <li>Industrial Procurement &amp; Supply Chain Coordination</li>
-          <li>Manufacturer &amp; Supplier Networking</li>
-          <li>International Business Opportunities</li>
-        </ul>
-
-        <blockquote class="lead-vision">
-          <strong>Our Vision:</strong> To build strong international partnerships and create sustainable business opportunities through trust, commitment and excellence.
-        </blockquote>
-      </div>
-    </div>
-  </div>
-
-  <style>
-    .leadership { background: var(--navy-900); }
-
-    .lead-card {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 40px;
-      background: var(--navy-800);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      border-radius: 8px;
-      overflow: hidden;
-      text-align: left;
-      transition: all var(--transition);
-    }
-    .lead-card:hover {
-      border-color: rgba(212, 175, 55, 0.3);
-      box-shadow: var(--shadow);
-    }
-
-    .lead-photo { position: relative; background: var(--navy-700); }
-    .lead-photo img {
-      width: 100%;
-      height: 100%;
-      min-height: 420px;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
-    }
-    .lead-photo::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold-600), var(--gold-400));
-    }
-
-    .lead-body { padding: 40px 40px 40px 0; }
-    .lead-body h3 {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-    .lead-role {
-      color: var(--gold-500);
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-    .lead-body p {
-      color: var(--gray-300);
-      margin-bottom: 16px;
-    }
-    .lead-body h4 {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--white);
-      margin: 28px 0 14px;
-    }
-
-    .lead-areas {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 24px;
-    }
-    .lead-areas li {
-      position: relative;
-      padding-left: 24px;
-      font-size: 0.9rem;
-      color: var(--gray-300);
-    }
-    .lead-areas li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--gold-500);
-      font-weight: 700;
-    }
-
-    .lead-vision {
-      margin-top: 28px;
-      padding: 20px 24px;
-      background: var(--navy-700);
-      border-left: 4px solid var(--gold-500);
-      border-radius: 4px;
-      color: var(--gray-300);
-      line-height: 1.7;
-    }
-    .lead-vision strong { color: var(--gold-500); }
-
-    @media (max-width: 800px) {
-      .lead-card { grid-template-columns: 1fr; gap: 0; }
-      .lead-photo img { min-height: 300px; max-height: 380px; }
-      .lead-body { padding: 28px 24px; }
-      .lead-body h3 { font-size: 1.6rem; }
-      .lead-areas { grid-template-columns: 1fr; }
-    }
-  </style>
-</section>
   
   <!-- Services -->
   <section class="section services" id="services">
@@ -652,6 +507,8 @@
             <li><a href="#about">About Us</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="gallery.html#team">Leadership</a></li>
+            <li><a href="gallery.html#gallery">Gallery</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
