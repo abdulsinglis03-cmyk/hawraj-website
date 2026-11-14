@@ -61,6 +61,68 @@
     }
     .gallery__item:hover .gallery__caption { opacity: 1; }
 
+
+  /* ---------- Leader cards (grid) ---------- */
+    .leaders__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .leader {
+      background: var(--navy-800);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .leader:hover { transform: translateY(-6px); border-color: rgba(212,175,55,.3); box-shadow: var(--shadow); }
+    .leader__photo { position: relative; aspect-ratio: 1/1; background: var(--navy-700); overflow: hidden; }
+    .leader__photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .6s ease; }
+    .leader:hover .leader__photo img { transform: scale(1.04); }
+    .leader__photo::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 8px;
+      background: linear-gradient(90deg, var(--gold-600), var(--gold-400));
+    }
+    .leader__info { padding: 28px 30px 32px; display: flex; flex-direction: column; flex: 1; }
+    .leader__name { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .leader__role { color: var(--gray-300); font-size: 1rem; line-height: 1.5; margin-bottom: 22px; }
+    .leader__more {
+      margin-top: auto;
+      align-self: flex-end;
+      color: var(--gold-500);
+      font-weight: 600;
+      font-size: .95rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .leader__more:hover { color: var(--gold-400); }
+    .leader__full { display: none; }
+
+    /* Profile pop-up */
+    .pmodal {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(5,13,26,.92);
+      display: none;
+      align-items: flex-start; justify-content: center;
+      padding: 90px 20px 40px;
+      overflow-y: auto;
+    }
+    .pmodal.open { display: flex; }
+    .pmodal__box { position: relative; width: 100%; max-width: 1000px; }
+    .pmodal__box .lead-card { margin: 0; }
+    .pmodal__close {
+      position: absolute; top: -52px; right: 0;
+      background: none; border: none; cursor: pointer;
+      color: var(--white); font-size: 2.4rem; line-height: 1;
+    }
+    .pmodal__close:hover { color: var(--gold-500); }
+
+    @media (max-width: 1024px) { .leaders__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .leaders__grid { grid-template-columns: 1fr; } }
+
     /* Lightbox */
 
 .gallery__video {
@@ -247,141 +309,124 @@
     </div>
   </section>
 
-  <!-- Team -->
+ <!-- Team -->
   <section class="section team" id="team">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">Our Team</span>
-        <h2 class="section__title">The People Driving Our Vision</h2>
+        <span class="section__label">Our Leadership</span>
+        <h2 class="section__title">Leadership Team</h2>
         <div class="section__divider"></div>
       </div>
 
-      <!-- Featured profile -->
+      <div class="leaders__grid">
 
-      <!-- Director profile (first) -->
-      <div class="lead-card">
-        <div class="lead-photo">
-          <img src="images/director.jpg" alt="Director of HAWRAJ GLOBAL INDUSTRIES LTD">
-        </div>
-
-        <div class="lead-body">
-          <h3> HAWA ABDULKADIR SHEGO </h3>
-          <p class="lead-role">Director – Head of Business | HAWRAJ GLOBAL INDUSTRIES LTD.</p>
-
-          <p>As Director and Head of Business at HAWRAJ GLOBAL INDUSTRIES LTD., she leads the company's direction, growth and day-to-day business strategy. She brings a hands-on, results-focused approach to leadership, with a firm commitment to professionalism, integrity and customer satisfaction.</p>
-
-          <p>She oversees the company's business operations, guides its service offering across industrial, engineering, construction and general supply solutions, and builds the trusted client and partner relationships on which the company is founded.</p>
-
-          <p>Under her leadership, HAWRAJ GLOBAL INDUSTRIES LTD. continues to work towards its vision of becoming a trusted leader in industrial and engineering solutions in Kenya and across East Africa.</p>
-
-          <h4>Key Areas of Responsibility</h4>
-          <ul class="lead-areas">
-            <li>Corporate Leadership &amp; Strategic Direction</li>
-            <li>Business Development &amp; Growth</li>
-            <li>Client &amp; Partner Relationships</li>
-            <li>Operations &amp; Quality Standards</li>
-            <li>Project Oversight &amp; Delivery</li>
-            <li>Company Governance &amp; Compliance</li>
-          </ul>
-
-          <blockquote class="lead-vision">
-            <strong>Message from the Director:</strong> We are committed to delivering quality, reliability and integrity in everything we do, and to building lasting partnerships with every client we serve.
-          </blockquote>
-        </div>
-      </div>
-      <div class="lead-card">
-        <div class="lead-photo">
-          <img src="images/ashutosh-raj-singh.jpg" alt="Mr. Ashutosh Raj Singh, Business Head India">
-        </div>
-
-        <div class="lead-body">
-          <h3>Mr. Ashutosh Raj Singh</h3>
-          <p class="lead-role">Business Head – India | HAWRAJ GLOBAL INDUSTRIES LTD.</p>
-
-          <p>Mr. Ashutosh Raj Singh is an integral part of HAWRAJ GLOBAL INDUSTRIES LTD., serving as Business Head – India. Originally from India, he brings a business-oriented approach, a strong understanding of the Indian business environment, and a commitment to developing strategic business opportunities across international markets.</p>
-
-          <p>He is responsible for driving business development initiatives, identifying new market opportunities, building strategic partnerships, coordinating with manufacturers and suppliers, and strengthening the company's business network between India, Africa and other international markets.</p>
-
-          <p>With a focus on professionalism, innovation, trust and long-term business relationships, Mr. Singh plays an important role in advancing the company's vision of becoming a reliable global business partner.</p>
-
-          <h4>Key Areas of Responsibility</h4>
-          <ul class="lead-areas">
-            <li>Business Development &amp; Market Expansion</li>
-            <li>India–Africa Trade &amp; Business Relations</li>
-            <li>Strategic Partnerships &amp; Corporate Alliances</li>
-            <li>Industrial Procurement &amp; Supply Chain Coordination</li>
-            <li>Manufacturer &amp; Supplier Networking</li>
-            <li>International Business Opportunities</li>
-          </ul>
-
-          <blockquote class="lead-vision">
-            <strong>Our Vision:</strong> To build strong international partnerships and create sustainable business opportunities through trust, commitment and excellence.
-          </blockquote>
-        </div>
-      </div>
-
-      <!-- Other team members: copy one <article class="member"> block per person -->
-
-      <!-- IT Head profile -->
-      <div class="lead-card">
-        <div class="lead-photo">
-          <img src="images/it-head.jpg" alt="Head of IT, HAWRAJ GLOBAL INDUSTRIES LTD">
-        </div>
-
-        <div class="lead-body">
-          <h3>ABDUL SINGLIS VICTOR</h3>
-          <p class="lead-role">Head of Information Technology | HAWRAJ GLOBAL INDUSTRIES LTD.</p>
-
-          <p>As Head of Information Technology at HAWRAJ GLOBAL INDUSTRIES LTD., he leads the company's technology and digital systems, making sure the business runs smoothly, securely and efficiently. He brings a practical, solutions-focused approach to technology, with a strong commitment to reliability, innovation and professional standards.</p>
-
-          <p>He is responsible for the company's website and online presence, IT infrastructure, data and systems security, and digital tools that support the company's industrial, engineering, construction and supply operations, helping the team work better and clients reach the company with ease.</p>
-
-          <h4>Key Areas of Responsibility</h4>
-          <ul class="lead-areas">
-            <li>IT Strategy &amp; Digital Transformation</li>
-            <li>Website &amp; Online Presence</li>
-            <li>Network &amp; Systems Infrastructure</li>
-            <li>Data Security &amp; Backup</li>
-            <li>Technical Support &amp; Systems Maintenance</li>
-            <li>Business Software &amp; Communication Tools</li>
-          </ul>
-
-          <blockquote class="lead-vision">
-            <strong>Our Technology Vision:</strong> To use reliable, modern technology to make HAWRAJ GLOBAL INDUSTRIES LTD. more efficient, more secure and easier for our clients and partners to work with.
-          </blockquote>
-        </div>
-      </div>
-      <div class="team__grid">
-        <article class="member">
-          <div class="member__photo"><img src="images/team-1.jpg" alt="Team member name" loading="lazy"></div>
-          <div class="member__info">
-            <h3 class="member__name">Full Name</h3>
-            <p class="member__role">Job Title</p>
-            <p class="member__bio">One or two lines about this person and what they do in the company.</p>
+        <!-- 1. DIRECTOR -->
+        <article class="leader">
+          <div class="leader__photo"><img src="images/director.jpg" alt="Director" loading="lazy"></div>
+          <div class="leader__info">
+            <h3 class="leader__name">Director's Full Name</h3>
+            <p class="leader__role">Director &amp; Head of Business</p>
+            <a href="#" class="leader__more">Learn More &rarr;</a>
+          </div>
+          <div class="leader__full">
+            <div class="lead-card">
+              <div class="lead-photo"><img src="images/director.jpg" alt="Director"></div>
+              <div class="lead-body">
+                <h3>Director's Full Name</h3>
+                <p class="lead-role">Director – Head of Business | HAWRAJ GLOBAL INDUSTRIES LTD.</p>
+                <p>As Director and Head of Business at HAWRAJ GLOBAL INDUSTRIES LTD., she leads the company's direction, growth and day-to-day business strategy. She brings a hands-on, results-focused approach to leadership, with a firm commitment to professionalism, integrity and customer satisfaction.</p>
+                <p>She oversees the company's business operations, guides its service offering across industrial, engineering, construction and general supply solutions, and builds the trusted client and partner relationships on which the company is founded.</p>
+                <h4>Key Areas of Responsibility</h4>
+                <ul class="lead-areas">
+                  <li>Corporate Leadership &amp; Strategic Direction</li>
+                  <li>Business Development &amp; Growth</li>
+                  <li>Client &amp; Partner Relationships</li>
+                  <li>Operations &amp; Quality Standards</li>
+                  <li>Project Oversight &amp; Delivery</li>
+                  <li>Company Governance &amp; Compliance</li>
+                </ul>
+                <blockquote class="lead-vision"><strong>Message from the Director:</strong> We are committed to delivering quality, reliability and integrity in everything we do, and to building lasting partnerships with every client we serve.</blockquote>
+              </div>
+            </div>
           </div>
         </article>
 
-        <article class="member">
-          <div class="member__photo"><img src="images/team-2.jpg" alt="Team member name" loading="lazy"></div>
-          <div class="member__info">
-            <h3 class="member__name">Full Name</h3>
-            <p class="member__role">Job Title</p>
-            <p class="member__bio">One or two lines about this person and what they do in the company.</p>
+        <!-- 2. ASHUTOSH RAJ SINGH -->
+        <article class="leader">
+          <div class="leader__photo"><img src="images/ashutosh-raj-singh.jpg" alt="Mr. Ashutosh Raj Singh" loading="lazy"></div>
+          <div class="leader__info">
+            <h3 class="leader__name">Mr. Ashutosh Raj Singh</h3>
+            <p class="leader__role">Business Head – India</p>
+            <a href="#" class="leader__more">Learn More &rarr;</a>
+          </div>
+          <div class="leader__full">
+            <div class="lead-card">
+              <div class="lead-photo"><img src="images/ashutosh-raj-singh.jpg" alt="Mr. Ashutosh Raj Singh"></div>
+              <div class="lead-body">
+                <h3>Mr. Ashutosh Raj Singh</h3>
+                <p class="lead-role">Business Head – India | HAWRAJ GLOBAL INDUSTRIES LTD.</p>
+                <p>Mr. Ashutosh Raj Singh is an integral part of HAWRAJ GLOBAL INDUSTRIES LTD., serving as Business Head – India. Originally from India, he brings a business-oriented approach, a strong understanding of the Indian business environment, and a commitment to developing strategic business opportunities across international markets.</p>
+                <p>He is responsible for driving business development initiatives, identifying new market opportunities, building strategic partnerships, coordinating with manufacturers and suppliers, and strengthening the company's business network between India, Africa and other international markets.</p>
+                <p>With a focus on professionalism, innovation, trust and long-term business relationships, Mr. Singh plays an important role in advancing the company's vision of becoming a reliable global business partner.</p>
+                <h4>Key Areas of Responsibility</h4>
+                <ul class="lead-areas">
+                  <li>Business Development &amp; Market Expansion</li>
+                  <li>India–Africa Trade &amp; Business Relations</li>
+                  <li>Strategic Partnerships &amp; Corporate Alliances</li>
+                  <li>Industrial Procurement &amp; Supply Chain Coordination</li>
+                  <li>Manufacturer &amp; Supplier Networking</li>
+                  <li>International Business Opportunities</li>
+                </ul>
+                <blockquote class="lead-vision"><strong>Our Vision:</strong> To build strong international partnerships and create sustainable business opportunities through trust, commitment and excellence.</blockquote>
+              </div>
+            </div>
           </div>
         </article>
 
-        <article class="member">
-          <div class="member__photo"><img src="images/team-3.jpg" alt="Team member name" loading="lazy"></div>
-          <div class="member__info">
-            <h3 class="member__name">Full Name</h3>
-            <p class="member__role">Job Title</p>
-            <p class="member__bio">One or two lines about this person and what they do in the company.</p>
+        <!-- 3. HEAD OF IT -->
+        <article class="leader">
+          <div class="leader__photo"><img src="images/it-head.jpg" alt="Head of IT" loading="lazy"></div>
+          <div class="leader__info">
+            <h3 class="leader__name">Your Full Name</h3>
+            <p class="leader__role">Head of Information Technology</p>
+            <a href="#" class="leader__more">Learn More &rarr;</a>
+          </div>
+          <div class="leader__full">
+            <div class="lead-card">
+              <div class="lead-photo"><img src="images/it-head.jpg" alt="Head of IT"></div>
+              <div class="lead-body">
+                <h3>Your Full Name</h3>
+                <p class="lead-role">Head of Information Technology | HAWRAJ GLOBAL INDUSTRIES LTD.</p>
+                <p>As Head of Information Technology at HAWRAJ GLOBAL INDUSTRIES LTD., he leads the company's technology and digital systems, making sure the business runs smoothly, securely and efficiently. He brings a practical, solutions-focused approach to technology, with a strong commitment to reliability, innovation and professional standards.</p>
+                <p>He is responsible for the company's website and online presence, IT infrastructure, data and systems security, and digital tools that support the company's operations, helping the team work better and clients reach the company with ease.</p>
+                <h4>Key Areas of Responsibility</h4>
+                <ul class="lead-areas">
+                  <li>IT Strategy &amp; Digital Transformation</li>
+                  <li>Website &amp; Online Presence</li>
+                  <li>Network &amp; Systems Infrastructure</li>
+                  <li>Data Security &amp; Backup</li>
+                  <li>Technical Support &amp; Systems Maintenance</li>
+                  <li>Business Software &amp; Communication Tools</li>
+                </ul>
+                <blockquote class="lead-vision"><strong>Our Technology Vision:</strong> To use reliable, modern technology to make HAWRAJ GLOBAL INDUSTRIES LTD. more efficient, more secure and easier for our clients and partners to work with.</blockquote>
+              </div>
+            </div>
           </div>
         </article>
+
+        <!-- To add another leader: copy one whole <article class="leader"> ... </article> block -->
+
       </div>
     </div>
   </section>
 
+  <!-- Profile pop-up -->
+  <div class="pmodal" id="pmodal">
+    <div class="pmodal__box">
+      <button class="pmodal__close" id="pmodal-close" aria-label="Close">&times;</button>
+      <div id="pmodal-body"></div>
+    </div>
+  </div>
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -444,6 +489,22 @@
 
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Leader profile pop-up
+    var pm = document.getElementById('pmodal');
+    var pmBody = document.getElementById('pmodal-body');
+    document.querySelectorAll('.leader').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        e.preventDefault();
+        pmBody.innerHTML = card.querySelector('.leader__full').innerHTML;
+        pm.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    function closePm() { pm.classList.remove('open'); document.body.style.overflow = ''; }
+    document.getElementById('pmodal-close').addEventListener('click', closePm);
+    pm.addEventListener('click', function (e) { if (e.target === pm) closePm(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePm(); });
 
     // Lightbox
     var lb = document.getElementById('lightbox');
