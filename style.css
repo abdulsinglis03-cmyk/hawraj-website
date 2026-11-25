@@ -1265,3 +1265,14 @@ ul {
     height: 280px;
   }
 }
+/* WhatsApp icon next to phone number */
+.wa-link {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-left: 10px;
+  color: #25D366 !important;
+  transition: transform var(--transition);
+}
+.wa-link:hover { transform: scale(1.15); }
+.wa-link svg { width: 22px !important; height: 22px !important; margin: 0 !important; color: #25D366; }
